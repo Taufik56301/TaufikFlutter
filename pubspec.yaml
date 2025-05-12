@@ -21,9 +21,9 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/fonts/Caveat-Regular.ttf
+    - assets/fonts/Underdog-Regular.ttf
 
   fonts:
-    - family: Caveat
+    - family: Underdog
       fonts:
-        - asset: assets/fonts/Caveat-Regular.ttf
+        - asset: assets/fonts/Underdog-Regular.ttf

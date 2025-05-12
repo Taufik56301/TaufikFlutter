@@ -26,12 +26,12 @@ class _TodoListAppState extends State<TodoListApp> {
       debugShowCheckedModeBanner: false,
       title: 'Todo List',
       theme: ThemeData(
-        fontFamily: 'Caveat',
+        fontFamily: 'Underdog',
         useMaterial3: true,
         brightness: Brightness.light,
       ),
       darkTheme: ThemeData(
-        fontFamily: 'Caveat',
+        fontFamily: 'Underdog',
         useMaterial3: true,
         brightness: Brightness.dark,
       ),
