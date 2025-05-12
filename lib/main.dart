@@ -36,7 +36,7 @@ class _TodoListAppState extends State<TodoListApp> {
         brightness: Brightness.dark,
       ),
       themeMode: _themeMode,
-      home: TodoHomePage(
+      home: SplashScreenWrapper(
         isDarkMode: _themeMode == ThemeMode.dark,
         onThemeChanged: _toggleTheme,
       ),
@@ -177,6 +177,83 @@ class _TodoHomePageState extends State<TodoHomePage> {
               ),
             )
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class SplashScreenWrapper extends StatelessWidget {
+  final bool isDarkMode;
+  final Function(bool) onThemeChanged;
+
+  const SplashScreenWrapper({
+    super.key,
+    required this.isDarkMode,
+    required this.onThemeChanged,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SplashScreenWithCallback(
+      isDarkMode: isDarkMode,
+      onThemeChanged: onThemeChanged,
+    );
+  }
+}
+
+class SplashScreenWithCallback extends StatefulWidget {
+  final bool isDarkMode;
+  final Function(bool) onThemeChanged;
+
+  const SplashScreenWithCallback({
+    super.key,
+    required this.isDarkMode,
+    required this.onThemeChanged,
+  });
+
+  @override
+  State<SplashScreenWithCallback> createState() =>
+      _SplashScreenWithCallbackState();
+}
+
+class _SplashScreenWithCallbackState extends State<SplashScreenWithCallback> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 2), () {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (_) => TodoHomePage(
+            isDarkMode: widget.isDarkMode,
+            onThemeChanged: widget.onThemeChanged,
+          ),
+        ),
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const SplashScreen();
+  }
+}
+
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      backgroundColor: Colors.blueAccent,
+      body: Center(
+        child: Text(
+          'Todo List App',
+          style: TextStyle(
+            fontSize: 32,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
